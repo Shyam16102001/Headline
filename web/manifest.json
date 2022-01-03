@@ -1,6 +1,6 @@
 {
-    "name": "news_app",
-    "short_name": "news_app",
+    "name": "headline",
+    "short_name": "headline",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

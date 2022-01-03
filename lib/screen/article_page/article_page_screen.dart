@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/model/article_model.dart';
+import 'package:headline/model/article_model.dart';
 
-class ArticlePage extends StatelessWidget {
-  const ArticlePage({Key? key, required this.article}) : super(key: key);
+class ArticlePageScreen extends StatelessWidget {
+  const ArticlePageScreen({Key? key, required this.article}) : super(key: key);
   final Article article;
   @override
   Widget build(BuildContext context) {

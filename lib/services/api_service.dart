@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:news_app/model/article_model.dart';
+import 'package:headline/model/article_model.dart';
+
+int i = 1;
 
 class ApiService {
   final endPointUrl =
@@ -13,6 +15,7 @@ class ApiService {
       List body = json['articles'].cast<dynamic>();
       List<Article> articles =
           body.map((dynamic item) => Article.fromJson(item)).toList();
+
       return articles;
     } else {
       throw ("Server Error");

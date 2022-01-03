@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/model/article_model.dart';
-import 'package:news_app/screen/article_page/article_page.dart';
+import 'package:headline/model/article_model.dart';
+import 'package:headline/screen/article_page/article_page_screen.dart';
 
 Widget customListTitle(Article article, BuildContext context) {
   return InkWell(
@@ -9,7 +8,7 @@ Widget customListTitle(Article article, BuildContext context) {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => ArticlePage(article: article)));
+              builder: (context) => ArticlePageScreen(article: article)));
     },
     child: Container(
       margin: const EdgeInsets.all(12),
