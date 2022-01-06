@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Headline',
-      theme: themeData(),
+      theme: theme(),
       debugShowCheckedModeBanner: false,
       home: const HomePageScreen(),
     );

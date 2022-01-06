@@ -1,33 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:headline/constants.dart';
 
-ThemeData themeData() {
+ThemeData theme() {
   return ThemeData(
-    primarySwatch: Colors.grey,
-    primaryColor: Colors.black,
-    brightness: Brightness.dark,
-    canvasColor: Colors.black,
-    textTheme: GoogleFonts.robotoTextTheme(
-      const TextTheme(
-          headline5: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
-          bodyText1: TextStyle(color: Colors.white, fontSize: 18),
-          caption: TextStyle(color: Colors.white, fontSize: 14)),
-    ),
-    iconTheme: IconThemeData(
-      color: Colors.grey.shade500,
-    ),
-    appBarTheme: const AppBarTheme(
-      iconTheme: IconThemeData(color: Colors.white),
-      centerTitle: true,
-      titleTextStyle: TextStyle(
-          color: Colors.white, fontWeight: FontWeight.normal, fontSize: 24),
-    ),
+      scaffoldBackgroundColor: kBackgroundColor,
+      fontFamily: "Ubuntu",
+      primarySwatch: Colors.grey,
+      visualDensity: VisualDensity.adaptivePlatformDensity,
+      textTheme: textTheme(),
+      // inputDecorationTheme: inputDecorationTheme(),
+      iconTheme: const IconThemeData(color: kPrimaryColor),
+      appBarTheme: apparTheme(),
+      dividerTheme:
+          DividerThemeData(color: Colors.blueGrey.shade200, thickness: 2));
+}
+
+TextTheme textTheme() {
+  return const TextTheme(
+    bodyText1: TextStyle(color: kTextColor),
+    bodyText2: TextStyle(color: kTextColor),
   );
 }
 
-final headingStyle = TextStyle(
-  color: Colors.white,
-  fontSize: 28,
-  fontWeight: FontWeight.bold,
-);
+AppBarTheme apparTheme() {
+  return const AppBarTheme(
+    color: kBackgroundColor,
+    titleTextStyle: TextStyle(
+        color: kPrimaryColor,
+        fontStyle: FontStyle.italic,
+        fontFamily: "NotoSerif",
+        fontSize: 35),
+  );
+}
+
+// InputDecorationTheme inputDecorationTheme() {
+//   OutlineInputBorder outlineInputBorder = OutlineInputBorder(
+//     borderRadius: BorderRadius.circular(28),
+//     borderSide: const BorderSide(color: Colors.black38),
+//     gapPadding: 10,
+//   );
+//   return InputDecorationTheme(
+//     contentPadding: const EdgeInsets.symmetric(horizontal: 42, vertical: 20),
+//     enabledBorder: outlineInputBorder,
+//     focusedBorder: outlineInputBorder,
+//     border: outlineInputBorder,
+//     hintStyle: const TextStyle(color: kSecondaryTextColor, fontSize: 18),
+//     labelStyle: const TextStyle(color: kPrimaryColor, fontSize: 24),
+//   );
+// }

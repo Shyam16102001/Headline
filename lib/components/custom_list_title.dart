@@ -1,53 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:headline/constants.dart';
 import 'package:headline/model/article_model.dart';
-import 'package:headline/screen/article_page/article_page_screen.dart';
+import 'package:headline/size_config.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 Widget customListTitle(Article article, BuildContext context) {
+  void _launchURL(String? url) async {
+    if (url != null) {
+      if (!await launch(url)) throw 'Could not launch $url';
+    }
+  }
+
+  Widget imageProvider(String? url) {
+    try {
+      return Image.network(url!,
+          height: double.infinity,
+          width: getProportionateScreenWidth(65),
+          fit: BoxFit.fill);
+    } catch (e) {
+      return Image.asset("assets/images/image_not_found.png",
+          height: double.infinity,
+          width: getProportionateScreenWidth(65),
+          fit: BoxFit.contain);
+    }
+  }
+
   return InkWell(
-    onTap: () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => ArticlePageScreen(article: article)));
-    },
+    onTap: () => _launchURL(article.url),
     child: Container(
-      margin: const EdgeInsets.all(12),
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: const [BoxShadow(color: Colors.black45, blurRadius: 3)]),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      margin: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(1)),
+      padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(1)),
+      width: getProportionateScreenWidth(150),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            height: 200,
-            width: double.infinity,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: article.urlToImage != null
-                        ? NetworkImage(article.urlToImage as String)
-                        : const AssetImage('assets/images/image_not_found.png')
-                            as ImageProvider,
-                    fit: BoxFit.cover),
-                borderRadius: BorderRadius.circular(12)),
+          SizedBox(
+            height: double.infinity,
+            width: getProportionateScreenWidth(65),
+            child: imageProvider(article.urlToImage),
           ),
-          const SizedBox(height: 8),
-          Container(
-            margin: const EdgeInsets.all(3),
-            padding: const EdgeInsets.all(6),
-            decoration: BoxDecoration(
-                color: Colors.red, borderRadius: BorderRadius.circular(30)),
-            child: Text(
-              article.source.name as String,
-              style: Theme.of(context).textTheme.caption,
+          SizedBox(
+            width: getProportionateScreenWidth(80),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(article.title ?? "",
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: headingStyle.merge(
+                      TextStyle(fontSize: getProportionateScreenHeight(20)),
+                    )),
+                Text(
+                  article.description ?? "",
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                ),
+              ],
             ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            article.title as String,
-            style: Theme.of(context).textTheme.headline5,
           )
         ],
       ),
