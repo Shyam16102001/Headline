@@ -12,16 +12,18 @@ Widget customListTitle(Article article, BuildContext context) {
   }
 
   Widget imageProvider(String? url) {
-    try {
-      return Image.network(url!,
-          height: double.infinity,
-          width: getProportionateScreenWidth(65),
-          fit: BoxFit.fill);
-    } catch (e) {
-      return Image.asset("assets/images/image_not_found.png",
+    if (url == null || url == "") {
+      return Image.network(
+          "https://headlinestorage.blob.core.windows.net/images/image_not_found.png",
           height: double.infinity,
           width: getProportionateScreenWidth(65),
           fit: BoxFit.contain);
+    } else {
+      url = "https://headlinecorsproxy.herokuapp.com/" + url;
+      return Image.network(url,
+          height: double.infinity,
+          width: getProportionateScreenWidth(65),
+          fit: BoxFit.fill);
     }
   }
 

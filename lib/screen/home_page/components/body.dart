@@ -6,6 +6,7 @@ import 'package:headline/model/article_model.dart';
 import 'package:headline/services/api_service.dart';
 import 'package:headline/size_config.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -40,6 +41,12 @@ class _BodyState extends State<Body> {
     );
   }
 
+  void _launchURL(String? url) async {
+    if (url != null) {
+      if (!await launch(url)) throw 'Could not launch $url';
+    }
+  }
+
   void navigator() => controller.animateTo(getProportionateScreenWidth(i),
       duration: kAnimationDuration, curve: Curves.ease);
 
@@ -53,16 +60,18 @@ class _BodyState extends State<Body> {
   }
 
   Widget imageProvider(String? url, double size) {
-    try {
-      return Image.network(url!,
-          height: getProportionateScreenHeight(size),
-          width: double.maxFinite,
-          fit: BoxFit.fill);
-    } catch (e) {
-      return Image.asset("assets/images/image_not_found.png",
+    if (url == null || url == "") {
+      return Image.network(
+          "https://headlinestorage.blob.core.windows.net/images/image_not_found.png",
           height: getProportionateScreenHeight(size),
           width: double.maxFinite,
           fit: BoxFit.contain);
+    } else {
+      url = "https://headlinecorsproxy.herokuapp.com/" + url;
+      return Image.network(url,
+          height: getProportionateScreenHeight(size),
+          width: double.maxFinite,
+          fit: BoxFit.fill);
     }
   }
 
@@ -70,7 +79,7 @@ class _BodyState extends State<Body> {
     return Container(
       height: getProportionateScreenHeight(180),
       width: double.infinity,
-      margin: EdgeInsets.only(left: getProportionateScreenWidth(12.5)),
+      margin: EdgeInsets.only(left: getProportionateScreenWidth(12)),
       child: Column(
         children: [
           Row(
@@ -81,7 +90,7 @@ class _BodyState extends State<Body> {
                   child: Text(
                     "Featured News",
                     style: TextStyle(
-                        fontSize: getProportionateScreenHeight(25),
+                        fontSize: getProportionateScreenHeight(22.5),
                         color: kPrimaryColor,
                         fontWeight: FontWeight.bold,
                         fontFamily: "Poppins"),
@@ -90,7 +99,7 @@ class _BodyState extends State<Body> {
               Row(
                 children: [
                   IconButton(
-                    splashRadius: getProportionateScreenHeight(25),
+                    splashRadius: getProportionateScreenHeight(22.5),
                     onPressed: () {
                       setState(() {
                         i = (i >= 152.5) ? i - 152.5 : 0;
@@ -101,7 +110,7 @@ class _BodyState extends State<Body> {
                   ),
                   SizedBox(width: getProportionateScreenWidth(2)),
                   IconButton(
-                    splashRadius: getProportionateScreenHeight(25),
+                    splashRadius: getProportionateScreenHeight(22.5),
                     onPressed: () {
                       setState(() {
                         i += 152.5;
@@ -110,17 +119,16 @@ class _BodyState extends State<Body> {
                     },
                     icon: const Icon(Icons.arrow_forward),
                   ),
-                  SizedBox(width: getProportionateScreenWidth(12.5)),
+                  SizedBox(width: getProportionateScreenWidth(12)),
                 ],
               ),
             ],
           ),
           Padding(
-              padding:
-                  EdgeInsets.only(right: getProportionateScreenWidth(12.5)),
+              padding: EdgeInsets.only(right: getProportionateScreenWidth(12)),
               child: const Divider()),
           SizedBox(
-            height: getProportionateScreenHeight(115),
+            height: getProportionateScreenHeight(110),
             width: double.infinity,
             child: Scrollbar(
               controller: controller,
@@ -173,119 +181,28 @@ class _BodyState extends State<Body> {
     ]);
   }
 
-  Container smallImageSection(List<Article> articles, int index) {
-    return Container(
-      // color: kSectionColor,
-      width: getProportionateScreenWidth(110),
-      height: getProportionateScreenHeight(220),
-      decoration: BoxDecoration(
-          color: kSectionColor,
-          border: Border.all(
+  Widget smallImageSection(List<Article> articles, int index) {
+    return InkWell(
+      onTap: () => _launchURL(articles[index].url),
+      child: Container(
+        width: getProportionateScreenWidth(110),
+        height: getProportionateScreenHeight(220),
+        decoration: BoxDecoration(
             color: kSectionColor,
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-          boxShadow: [
-            const BoxShadow(color: kPrimaryColor, blurRadius: 10.0),
-          ]),
-      child: Column(
-        children: [
-          imageProvider(articles[index].urlToImage, 135),
-          Container(
-            padding: EdgeInsets.symmetric(
-                vertical: getProportionateScreenHeight(8),
-                horizontal: getProportionateScreenWidth(2)),
-            child: Column(
-              children: [
-                Text(
-                  articles[index].title ?? "",
-                  style: headingStyle,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                SizedBox(height: getProportionateScreenHeight(10)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(articles[index].source.name ?? "",
-                        style: const TextStyle(color: kSecondaryTextColor)),
-                    Text(
-                      "  |  " +
-                          timeDifference(articles[index].publishedAt ?? ""),
-                    ),
-                    SizedBox(height: getProportionateScreenHeight(10)),
-                  ],
-                ),
-              ],
+            border: Border.all(
+              color: kSectionColor,
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget smallDescriptionSection(List<Article> articles, int index) {
-    return Container(
-      width: getProportionateScreenWidth(110),
-      height: getProportionateScreenHeight(220),
-      padding: EdgeInsets.symmetric(
-          vertical: getProportionateScreenHeight(10),
-          horizontal: getProportionateScreenWidth(2)),
-      decoration: BoxDecoration(
-          color: kSectionColor,
-          border: Border.all(color: kSectionColor),
-          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-          boxShadow: [const BoxShadow(color: kPrimaryColor, blurRadius: 10.0)]),
-      child: Column(
-        children: [
-          Text(
-            articles[index].title ?? "",
-            style: headingStyle,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-          ),
-          SizedBox(height: getProportionateScreenHeight(10)),
-          Text(
-            articles[index].description ?? "",
-            overflow: TextOverflow.ellipsis,
-            maxLines: 5,
-          ),
-          const Spacer(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(articles[index].source.name ?? "",
-                  style: const TextStyle(color: kSecondaryTextColor)),
-              Text(
-                "  |  " + timeDifference(articles[index].publishedAt ?? ""),
-              ),
-            ],
-          ),
-          SizedBox(height: getProportionateScreenHeight(10)),
-        ],
-      ),
-    );
-  }
-
-  Widget largeNewsSection(List<Article> articles, int index) {
-    return Container(
-      width: getProportionateScreenWidth(110),
-      height: getProportionateScreenHeight(450),
-      decoration: BoxDecoration(
-          color: kSectionColor,
-          border: Border.all(
-            color: kSectionColor,
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-          boxShadow: [
-            const BoxShadow(color: kPrimaryColor, blurRadius: 10.0),
-          ]),
-      child: Column(
-        children: [
-          imageProvider(articles[index].urlToImage, 220),
-          Expanded(
-            child: Container(
+            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+            // ignore: prefer_const_literals_to_create_immutables
+            boxShadow: [
+              const BoxShadow(color: kPrimaryColor, blurRadius: 10.0),
+            ]),
+        child: Column(
+          children: [
+            imageProvider(articles[index].urlToImage, 135),
+            Container(
               padding: EdgeInsets.symmetric(
-                  vertical: getProportionateScreenHeight(10),
+                  vertical: getProportionateScreenHeight(8),
                   horizontal: getProportionateScreenWidth(2)),
               child: Column(
                 children: [
@@ -293,15 +210,9 @@ class _BodyState extends State<Body> {
                     articles[index].title ?? "",
                     style: headingStyle,
                     overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
+                    maxLines: 1,
                   ),
                   SizedBox(height: getProportionateScreenHeight(10)),
-                  Text(
-                    articles[index].description ?? "",
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 4,
-                  ),
-                  const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -311,22 +222,131 @@ class _BodyState extends State<Body> {
                         "  |  " +
                             timeDifference(articles[index].publishedAt ?? ""),
                       ),
+                      SizedBox(height: getProportionateScreenHeight(10)),
                     ],
                   ),
-                  SizedBox(height: getProportionateScreenHeight(10)),
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget smallDescriptionSection(List<Article> articles, int index) {
+    return InkWell(
+      onTap: () => _launchURL(articles[index].url),
+      child: Container(
+        width: getProportionateScreenWidth(110),
+        height: getProportionateScreenHeight(220),
+        padding: EdgeInsets.symmetric(
+            vertical: getProportionateScreenHeight(10),
+            horizontal: getProportionateScreenWidth(2)),
+        decoration: BoxDecoration(
+            color: kSectionColor,
+            border: Border.all(color: kSectionColor),
+            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+            // ignore: prefer_const_literals_to_create_immutables
+            boxShadow: [
+              const BoxShadow(color: kPrimaryColor, blurRadius: 10.0)
+            ]),
+        child: Column(
+          children: [
+            Text(
+              articles[index].title ?? "",
+              style: headingStyle,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+            ),
+            SizedBox(height: getProportionateScreenHeight(10)),
+            Text(
+              articles[index].description ?? "",
+              overflow: TextOverflow.ellipsis,
+              maxLines: 5,
+            ),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(articles[index].source.name ?? "",
+                    style: const TextStyle(color: kSecondaryTextColor)),
+                Text(
+                  "  |  " + timeDifference(articles[index].publishedAt ?? ""),
+                ),
+              ],
+            ),
+            SizedBox(height: getProportionateScreenHeight(10)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget largeNewsSection(List<Article> articles, int index) {
+    return InkWell(
+      onTap: () => _launchURL(articles[index].url),
+      child: Container(
+        width: getProportionateScreenWidth(110),
+        height: getProportionateScreenHeight(450),
+        decoration: BoxDecoration(
+            color: kSectionColor,
+            border: Border.all(
+              color: kSectionColor,
+            ),
+            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+            // ignore: prefer_const_literals_to_create_immutables
+            boxShadow: [
+              const BoxShadow(color: kPrimaryColor, blurRadius: 10.0),
+            ]),
+        child: Column(
+          children: [
+            imageProvider(articles[index].urlToImage, 220),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                    vertical: getProportionateScreenHeight(10),
+                    horizontal: getProportionateScreenWidth(2)),
+                child: Column(
+                  children: [
+                    Text(
+                      articles[index].title ?? "",
+                      style: headingStyle,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
+                    ),
+                    SizedBox(height: getProportionateScreenHeight(10)),
+                    Text(
+                      articles[index].description ?? "",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 4,
+                    ),
+                    const Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(articles[index].source.name ?? "",
+                            style: const TextStyle(color: kSecondaryTextColor)),
+                        Text(
+                          "  |  " +
+                              timeDifference(articles[index].publishedAt ?? ""),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: getProportionateScreenHeight(10)),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   String timeDifference(String time) {
-    String difference = Jiffy(time, "yyyy-MM-dd'T'HH:mm:ss'Z'")
-        .add(hours: 5, minutes: 30)
-        .fromNow();
+    String current = Jiffy().utc().toIso8601String();
+    String difference = Jiffy(time).from(current);
     return difference;
   }
 }
