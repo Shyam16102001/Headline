@@ -92,7 +92,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
           const Text("Mobile version of this applicaton is under development.",
               textAlign: TextAlign.center,
               style: TextStyle(fontFamily: "Poppins")),
-          const Text("Vist after some time or open in desktop.",
+          const Text("Visit after some time or open in desktop.",
               textAlign: TextAlign.center,
               style: TextStyle(fontFamily: "Poppins")),
           SizedBox(height: getProportionateScreenHeight(10)),
