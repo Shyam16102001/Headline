@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:headline/constants.dart';
+import 'package:headline/screen/home_page/components/body.dart';
 import 'package:headline/size_config.dart';
 import 'package:jiffy/jiffy.dart';
-
-import 'components/body.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({Key? key}) : super(key: key);
@@ -21,8 +20,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     final screenWidth = MediaQuery.of(context).size.width;
-    return (screenWidth >= 768) ? largeScreen() : smallScreen();
-    // return smallScreen();
+    return (screenWidth >= 820) ? largeScreen() : smallScreen();
   }
 
   Scaffold largeScreen() {
@@ -46,10 +44,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 ),
               ],
             ),
-            // Spacer(),
             Row(
               children: [
-                // SizedBox(width: getProportionateScreenWidth(5)),
                 SvgPicture.network(
                     "https://headlinestorage.blob.core.windows.net/icons/icon.svg",
                     height: 60),
@@ -58,7 +54,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 const SizedBox(width: 60)
               ],
             ),
-            // Spacer(),
             SvgPicture.network(
                 "https://headlinestorage.blob.core.windows.net/icons/shyam.svg",
                 height: 50)

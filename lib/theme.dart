@@ -8,7 +8,6 @@ ThemeData theme() {
       primarySwatch: Colors.grey,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       textTheme: textTheme(),
-      // inputDecorationTheme: inputDecorationTheme(),
       iconTheme: const IconThemeData(color: kPrimaryColor),
       appBarTheme: apparTheme(),
       dividerTheme:
@@ -32,19 +31,3 @@ AppBarTheme apparTheme() {
         fontSize: 35),
   );
 }
-
-// InputDecorationTheme inputDecorationTheme() {
-//   OutlineInputBorder outlineInputBorder = OutlineInputBorder(
-//     borderRadius: BorderRadius.circular(28),
-//     borderSide: const BorderSide(color: Colors.black38),
-//     gapPadding: 10,
-//   );
-//   return InputDecorationTheme(
-//     contentPadding: const EdgeInsets.symmetric(horizontal: 42, vertical: 20),
-//     enabledBorder: outlineInputBorder,
-//     focusedBorder: outlineInputBorder,
-//     border: outlineInputBorder,
-//     hintStyle: const TextStyle(color: kSecondaryTextColor, fontSize: 18),
-//     labelStyle: const TextStyle(color: kPrimaryColor, fontSize: 24),
-//   );
-// }

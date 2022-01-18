@@ -1,32 +1,33 @@
 import 'package:headline/model/source_model.dart';
-import 'package:headline/model/thumbnail_model.dart';
+import 'package:headline/model/article_image_model.dart';
 
 class Article {
-  List<Source> source;
-  ArticleImage urlToImage;
-  String? title;
+  String? source;
+  String? image;
+  String? name;
   String? description;
   String? url;
   String? publishedAt;
 
   Article({
     required this.source,
-    required this.title,
+    required this.name,
     required this.description,
     required this.url,
-    required this.urlToImage,
+    required this.image,
     required this.publishedAt,
   });
 
   factory Article.fromJson(Map<String, dynamic> json) {
     return Article(
-      title: json['name'] as String?,
+      name: json['name'] as String?,
       url: json['url'] as String?,
       description: json['description'] as String?,
       publishedAt: json['datePublished'] as String?,
-      urlToImage: ArticleImage.fromJson(json["image"]),
+      image: ArticleImage.fromJson(json["image"]).thumbnail.contentUrl,
       source:
-          List<Source>.from(json["provider"].map((x) => Source.fromJson(x))),
+          List<Source>.from(json["provider"].map((x) => Source.fromJson(x)))[0]
+              .name,
     );
   }
 }

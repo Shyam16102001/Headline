@@ -30,8 +30,8 @@ class _BodyState extends State<Body> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                latestNewsSection(articles!),
-                featureNewsSection(articles)
+                topStoriesSection(articles!),
+                latestNewsSection(articles)
               ],
             ),
           );
@@ -67,6 +67,7 @@ class _BodyState extends State<Body> {
           width: double.maxFinite,
           fit: BoxFit.contain);
     } else {
+      url = url.substring(0, url.lastIndexOf("&"));
       return Image.network(url,
           height: getProportionateScreenHeight(size),
           width: double.maxFinite,
@@ -74,7 +75,7 @@ class _BodyState extends State<Body> {
     }
   }
 
-  Container featureNewsSection(List<Article> articles) {
+  Container latestNewsSection(List<Article> articles) {
     return Container(
       height: getProportionateScreenHeight(180),
       width: double.infinity,
@@ -87,7 +88,7 @@ class _BodyState extends State<Body> {
               Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Featured News",
+                    "Latest News",
                     style: TextStyle(
                         fontSize: getProportionateScreenHeight(22.5),
                         color: kPrimaryColor,
@@ -147,11 +148,11 @@ class _BodyState extends State<Body> {
     );
   }
 
-  Column latestNewsSection(List<Article> articles) {
+  Column topStoriesSection(List<Article> articles) {
     return Column(children: [
       SizedBox(height: getProportionateScreenHeight(5)),
       Text(
-        "Latest News",
+        "Top Stories",
         style: TextStyle(
             fontSize: getProportionateScreenHeight(30),
             color: kPrimaryColor,
@@ -200,7 +201,7 @@ class _BodyState extends State<Body> {
             ]),
         child: Column(
           children: [
-            imageProvider(articles[index].urlToImage.thumbnail.contentUrl, 135),
+            imageProvider(articles[index].image, 135),
             Container(
               padding: EdgeInsets.symmetric(
                   vertical: getProportionateScreenHeight(8),
@@ -208,7 +209,7 @@ class _BodyState extends State<Body> {
               child: Column(
                 children: [
                   Text(
-                    articles[index].title ?? "",
+                    articles[index].name?.trimLeft() ?? "",
                     style: headingStyle,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
@@ -217,7 +218,7 @@ class _BodyState extends State<Body> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(articles[index].source[0].name,
+                      Text(articles[index].source ?? "",
                           style: const TextStyle(color: kSecondaryTextColor)),
                       Text(
                         "  |  " +
@@ -255,22 +256,22 @@ class _BodyState extends State<Body> {
         child: Column(
           children: [
             Text(
-              articles[index].title ?? "",
+              articles[index].name?.trimLeft() ?? "",
               style: headingStyle,
               overflow: TextOverflow.ellipsis,
-              maxLines: 2,
+              maxLines: 3,
             ),
             SizedBox(height: getProportionateScreenHeight(10)),
             Text(
-              articles[index].description ?? "",
+              articles[index].description?.trimLeft() ?? "",
               overflow: TextOverflow.ellipsis,
-              maxLines: 5,
+              maxLines: 3,
             ),
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(articles[index].source[0].name,
+                Text(articles[index].source ?? "",
                     style: const TextStyle(color: kSecondaryTextColor)),
                 Text(
                   "  |  " + timeDifference(articles[index].publishedAt ?? ""),
@@ -304,7 +305,7 @@ class _BodyState extends State<Body> {
             ]),
         child: Column(
           children: [
-            imageProvider(articles[index].urlToImage.thumbnail.contentUrl, 220),
+            imageProvider(articles[index].image, 220),
             Expanded(
               child: Container(
                 padding: EdgeInsets.symmetric(
@@ -313,14 +314,14 @@ class _BodyState extends State<Body> {
                 child: Column(
                   children: [
                     Text(
-                      articles[index].title ?? "",
+                      articles[index].name?.trimLeft() ?? "",
                       style: headingStyle,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
                     ),
                     SizedBox(height: getProportionateScreenHeight(10)),
                     Text(
-                      articles[index].description ?? "",
+                      articles[index].description?.trimLeft() ?? "",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 4,
                     ),
@@ -328,7 +329,7 @@ class _BodyState extends State<Body> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(articles[index].source[0].name,
+                        Text(articles[index].source ?? "",
                             style: const TextStyle(color: kSecondaryTextColor)),
                         Text(
                           "  |  " +

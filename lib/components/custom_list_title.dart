@@ -19,6 +19,7 @@ Widget customListTitle(Article article, BuildContext context) {
           width: getProportionateScreenWidth(65),
           fit: BoxFit.contain);
     } else {
+      url = url.substring(0, url.lastIndexOf("&"));
       return Image.network(url,
           height: double.infinity,
           width: getProportionateScreenWidth(65),
@@ -38,21 +39,21 @@ Widget customListTitle(Article article, BuildContext context) {
           SizedBox(
             height: double.infinity,
             width: getProportionateScreenWidth(65),
-            child: imageProvider(article.urlToImage.thumbnail.contentUrl),
+            child: imageProvider(article.image),
           ),
           SizedBox(
             width: getProportionateScreenWidth(80),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(article.title ?? "",
+                Text(article.name?.trimLeft() ?? "",
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                     style: headingStyle.merge(
                       TextStyle(fontSize: getProportionateScreenHeight(20)),
                     )),
                 Text(
-                  article.description ?? "",
+                  article.description?.trimLeft() ?? "",
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                 ),
