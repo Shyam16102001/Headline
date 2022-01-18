@@ -67,7 +67,6 @@ class _BodyState extends State<Body> {
           width: double.maxFinite,
           fit: BoxFit.contain);
     } else {
-      url = "https://headlinecorsproxy.herokuapp.com/" + url;
       return Image.network(url,
           height: getProportionateScreenHeight(size),
           width: double.maxFinite,
@@ -192,14 +191,16 @@ class _BodyState extends State<Body> {
             border: Border.all(
               color: kSectionColor,
             ),
-            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+            borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(10.0),
+                bottomRight: Radius.circular(10.0)),
             // ignore: prefer_const_literals_to_create_immutables
             boxShadow: [
               const BoxShadow(color: kPrimaryColor, blurRadius: 10.0),
             ]),
         child: Column(
           children: [
-            imageProvider(articles[index].urlToImage, 135),
+            imageProvider(articles[index].urlToImage.thumbnail.contentUrl, 135),
             Container(
               padding: EdgeInsets.symmetric(
                   vertical: getProportionateScreenHeight(8),
@@ -216,7 +217,7 @@ class _BodyState extends State<Body> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(articles[index].source.name ?? "",
+                      Text(articles[index].source[0].name,
                           style: const TextStyle(color: kSecondaryTextColor)),
                       Text(
                         "  |  " +
@@ -269,7 +270,7 @@ class _BodyState extends State<Body> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(articles[index].source.name ?? "",
+                Text(articles[index].source[0].name,
                     style: const TextStyle(color: kSecondaryTextColor)),
                 Text(
                   "  |  " + timeDifference(articles[index].publishedAt ?? ""),
@@ -294,14 +295,16 @@ class _BodyState extends State<Body> {
             border: Border.all(
               color: kSectionColor,
             ),
-            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+            borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(10.0),
+                bottomRight: Radius.circular(10.0)),
             // ignore: prefer_const_literals_to_create_immutables
             boxShadow: [
               const BoxShadow(color: kPrimaryColor, blurRadius: 10.0),
             ]),
         child: Column(
           children: [
-            imageProvider(articles[index].urlToImage, 220),
+            imageProvider(articles[index].urlToImage.thumbnail.contentUrl, 220),
             Expanded(
               child: Container(
                 padding: EdgeInsets.symmetric(
@@ -325,7 +328,7 @@ class _BodyState extends State<Body> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(articles[index].source.name ?? "",
+                        Text(articles[index].source[0].name,
                             style: const TextStyle(color: kSecondaryTextColor)),
                         Text(
                           "  |  " +

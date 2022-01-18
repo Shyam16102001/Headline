@@ -17,5 +17,5 @@ final headingStyle = TextStyle(
 const String appName = "Headline";
 const String quote = "All the news you need and more.";
 
-//Get the API Key from https://gnews.io/ and paste the API KEY here.
+// Past your apiKey Here
 const String apiKey = "";

@@ -22,6 +22,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
     SizeConfig().init(context);
     final screenWidth = MediaQuery.of(context).size.width;
     return (screenWidth >= 768) ? largeScreen() : smallScreen();
+    // return smallScreen();
   }
 
   Scaffold largeScreen() {
@@ -45,17 +46,19 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 ),
               ],
             ),
+            // Spacer(),
             Row(
               children: [
-                SizedBox(width: getProportionateScreenWidth(5)),
+                // SizedBox(width: getProportionateScreenWidth(5)),
                 SvgPicture.network(
-                  "https://headlinestorage.blob.core.windows.net/icons/icon.svg",
-                  height: 60,
-                ),
-                SizedBox(width: getProportionateScreenWidth(5)),
+                    "https://headlinestorage.blob.core.windows.net/icons/icon.svg",
+                    height: 60),
+                SizedBox(width: getProportionateScreenWidth(3)),
                 const Text(appName),
+                const SizedBox(width: 60)
               ],
             ),
+            // Spacer(),
             SvgPicture.network(
                 "https://headlinestorage.blob.core.windows.net/icons/shyam.svg",
                 height: 50)

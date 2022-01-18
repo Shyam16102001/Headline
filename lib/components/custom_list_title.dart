@@ -19,7 +19,6 @@ Widget customListTitle(Article article, BuildContext context) {
           width: getProportionateScreenWidth(65),
           fit: BoxFit.contain);
     } else {
-      url = "https://headlinecorsproxy.herokuapp.com/" + url;
       return Image.network(url,
           height: double.infinity,
           width: getProportionateScreenWidth(65),
@@ -39,7 +38,7 @@ Widget customListTitle(Article article, BuildContext context) {
           SizedBox(
             height: double.infinity,
             width: getProportionateScreenWidth(65),
-            child: imageProvider(article.urlToImage),
+            child: imageProvider(article.urlToImage.thumbnail.contentUrl),
           ),
           SizedBox(
             width: getProportionateScreenWidth(80),
