@@ -17,5 +17,5 @@ final headingStyle = TextStyle(
 const String appName = "Headline";
 const String quote = "All the news you need and more.";
 
-// Past your apiKey Here
+// Paste your apiKey here
 const String apiKey = "";
