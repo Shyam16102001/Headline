@@ -11,6 +11,16 @@ The application has been deployed in [Azure App Service](https://azure.microsoft
 
 ![website](https://user-images.githubusercontent.com/55325014/150069207-5e6b17d9-8bd1-4298-8600-f3a5db041c6b.png)
 
+## Prerequisite
+
+1. Latest version of the flutter is installed and configured properly.
+To test it run the following command
+```
+flutter doctor
+```
+2. Having an active Azure Subscription. If not visit [Azure](https://azure.microsoft.com/) to create a account.
+3. Go to [Bing News Search API](https://www.microsoft.com/en-us/bing/apis/bing-news-search-api) to create a resource.
+
 ## Usage
 1. Download or Clone this repository.
 2. Please open file **constant.dart** and change `YOUR API KEY` in the variable `apiKey` with your own API Key.
