@@ -18,4 +18,4 @@ const String appName = "Headline";
 const String quote = "All the news you need and more.";
 
 // Paste your apiKey here
-const String apiKey = "";
+const String apiKey = "YOUR API KEY";
