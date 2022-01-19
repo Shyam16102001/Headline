@@ -17,7 +17,7 @@ class ApiService {
           body.map((dynamic item) => Article.fromJson(item)).toList();
       return articles;
     } else {
-      throw ("Server Error");
+      throw ("Server Error!!");
     }
   }
 }
