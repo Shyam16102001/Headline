@@ -7,8 +7,12 @@ class ApiService {
   Future<List<Article>> getArticle() async {
     final res = await http.get(
       Uri.parse(
-          'https://api.bing.microsoft.com/v7.0/news?mkt=en-IN&safeSearch=Off'),
-      headers: {"Ocp-Apim-Subscription-Key": apiKey},
+          'https://bing-news-search1.p.rapidapi.com/news?safeSearch=Off&textFormat=Raw'),
+      headers: {
+        "x-bingapis-sdk": "true",
+        "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
+        "x-rapidapi-key": apiKey,
+      },
     );
     if (res.statusCode == 200) {
       Map<String, dynamic> json = jsonDecode(res.body);

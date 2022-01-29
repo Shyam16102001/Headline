@@ -46,17 +46,13 @@ class _HomePageScreenState extends State<HomePageScreen> {
             ),
             Row(
               children: [
-                SvgPicture.network(
-                    "https://headlinestorage.blob.core.windows.net/icons/icon.svg",
-                    height: 60),
+                SvgPicture.asset("assets/icons/icon.svg", height: 60),
                 SizedBox(width: getProportionateScreenWidth(3)),
                 const Text(appName),
                 const SizedBox(width: 60)
               ],
             ),
-            SvgPicture.network(
-                "https://headlinestorage.blob.core.windows.net/icons/shyam.svg",
-                height: 50)
+            SvgPicture.asset("assets/icons/shyam.svg", height: 50)
           ],
         ),
       ),
@@ -74,8 +70,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.network(
-            "https://headlinestorage.blob.core.windows.net/images/mobile.svg",
+          SvgPicture.asset(
+            "assets/images/mobile1.svg",
             height: getProportionateScreenHeight(250),
           ),
           SizedBox(height: getProportionateScreenHeight(20)),

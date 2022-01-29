@@ -61,8 +61,7 @@ class _BodyState extends State<Body> {
 
   Widget imageProvider(String? url, double size) {
     if (url == null || url == "") {
-      return Image.network(
-          "https://headlinestorage.blob.core.windows.net/images/image_not_found.png",
+      return Image.asset("assets/images/image_not_found.png",
           height: getProportionateScreenHeight(size),
           width: double.maxFinite,
           fit: BoxFit.contain);
