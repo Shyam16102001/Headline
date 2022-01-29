@@ -4,7 +4,7 @@
 Headline is a flutter application which uses [Bing News Search API](https://www.microsoft.com/en-us/bing/apis/bing-news-search-api) to fetch top news headlines in India and displays it.
 The main aim of the application is to provide a easy way for the people to know what is happening around the world.
 
-The application has been deployed in [Azure App Service](https://azure.microsoft.com/en-in/services/app-service/), [Azure Functions](https://azure.microsoft.com/en-in/services/functions/) for serverless computing and assets of the application are stored in [Azure Blob Storage](https://azure.microsoft.com/en-in/services/storage/blobs) .
+<!-- The application has been deployed in [Azure App Service](https://azure.microsoft.com/en-in/services/app-service/), [Azure Functions](https://azure.microsoft.com/en-in/services/functions/) for serverless computing and assets of the application are stored in [Azure Blob Storage](https://azure.microsoft.com/en-in/services/storage/blobs) . -->
 
 [Website Link](http://headline.azurewebsites.net/#/)
 >The website may take some time when loading the website for the first time.
