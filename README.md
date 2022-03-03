@@ -1,5 +1,4 @@
-# Headline <img src="https://headlinestorage.blob.core.windows.net/images/icon.png" alt="Logo" width="50" >
-
+# Headline <img src="https://github.com/Shyam16102001/Headline/blob/main/assets/icons/icon.svg" alt="Logo" width="50" >
 **_All the news you need and more._**
 
 Headline is a flutter application which uses [Bing News Search API](https://www.microsoft.com/en-us/bing/apis/bing-news-search-api) to fetch top news headlines in India and displays it.
