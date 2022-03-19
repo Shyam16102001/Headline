@@ -5,10 +5,9 @@ Headline is a flutter application which uses [Bing News Search API](https://www.
 The main aim of the application is to provide a easy way for the people to know what is happening around the world.
 
 [Website Link](https://headline16102001.netlify.app/#/)
-
 > The website may take some time when loading the website for the first time.
 
-![website](https://user-images.githubusercontent.com/55325014/150069207-5e6b17d9-8bd1-4298-8600-f3a5db041c6b.png)
+![website](https://user-images.githubusercontent.com/55325014/159108921-4f7b9ddd-a4a8-4401-8902-d0d57ec74950.png)
 
 ## Prerequisite
 
