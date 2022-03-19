@@ -37,6 +37,33 @@ flutter run -d chrome
 ```
 flutter build web
 ```
+You can also choose which renderer to use by using the `--web-renderer` option (See [Web renderers](https://docs.flutter.dev/development/tools/web-renderers)).
+
+7. This generates the app, including the assets, and places the files into the /build/web directory of the project.
+
+The release build of a simple app has the following structure:
+
+```
+/build/web
+  assets
+    AssetManifest.json
+    FontManifest.json
+    NOTICES
+    fonts
+      MaterialIcons-Regular.ttf
+      <other font files>
+    <image files>
+  index.html
+  main.dart.js
+  main.dart.js.map
+```
+
+8. Launch a web server (for example, `python -m http.server 8000`, or by using the [dhttpd](https://pub.dev/packages/dhttpd) package), and open the /build/web directory. 
+9. Navigate to `localhost:8000` in your browser (given the python SimpleHTTPServer example) to view the release version of your app.
+
+For more information visit: [https://docs.flutter.dev/deployment/web](https://docs.flutter.dev/deployment/web)
+
+
 
 ## Dependencies
 
