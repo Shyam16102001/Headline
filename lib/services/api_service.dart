@@ -5,9 +5,10 @@ import 'package:headline/model/article_model.dart';
 
 class ApiService {
   Future<List<Article>> getArticle() async {
+    print("object");
     final res = await http.get(
       Uri.parse(
-          'https://bing-news-search1.p.rapidapi.com/news?safeSearch=Off&textFormat=Raw'),
+          'https://bing-news-search1.p.rapidapi.com/news?mkt=en-IN&safeSearch=Off&textFormat=Raw'),
       headers: {
         "x-bingapis-sdk": "true",
         "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
