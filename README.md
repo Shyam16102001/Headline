@@ -1,10 +1,12 @@
-# Headline <img src="https://github.com/Shyam16102001/Headline/blob/main/assets/icons/icon.svg" alt="Logo" width="50" >
+# Headline <img src="https://github.com/Shyam16102001/Headline/blob/main/assets/images/icon.png" alt="Logo" width="50" >
+
 **_All the news you need and more._**
 
 Headline is a flutter application which uses [Bing News Search API](https://www.microsoft.com/en-us/bing/apis/bing-news-search-api) to fetch top news headlines in India and displays it.
 The main aim of the application is to provide a easy way for the people to know what is happening around the world.
 
 [Website Link](https://headline16102001.netlify.app/#/)
+
 > The website may take some time when loading the website for the first time.
 
 ![website](https://user-images.githubusercontent.com/55325014/159108921-4f7b9ddd-a4a8-4401-8902-d0d57ec74950.png)
@@ -37,6 +39,7 @@ flutter run -d chrome
 ```
 flutter build web
 ```
+
 You can also choose which renderer to use by using the `--web-renderer` option (See [Web renderers](https://docs.flutter.dev/development/tools/web-renderers)).
 
 7. This generates the app, including the assets, and places the files into the /build/web directory of the project.
@@ -58,12 +61,10 @@ The release build of a simple app has the following structure:
   main.dart.js.map
 ```
 
-8. Launch a web server (for example, `python -m http.server 8000`, or by using the [dhttpd](https://pub.dev/packages/dhttpd) package), and open the /build/web directory. 
+8. Launch a web server (for example, `python -m http.server 8000`, or by using the [dhttpd](https://pub.dev/packages/dhttpd) package), and open the /build/web directory.
 9. Navigate to `localhost:8000` in your browser (given the python SimpleHTTPServer example) to view the release version of your app.
 
 For more information visit: [https://docs.flutter.dev/deployment/web](https://docs.flutter.dev/deployment/web)
-
-
 
 ## Dependencies
 
