@@ -1,4 +1,4 @@
-# Headline <img src="https://github.com/Shyam16102001/Headline/blob/main/assets/images/icon.png" alt="Logo" width="50" >
+# Headline <img src="https://github.com/Shyam16102001/Headline/blob/main/assets/icons/icon.svg" alt="Logo" width="50" >
 
 **_All the news you need and more._**
 
