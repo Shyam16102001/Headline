@@ -6,13 +6,13 @@ import 'package:headline/model/article_model.dart';
 import 'package:headline/services/api_service.dart';
 import 'package:headline/size_config.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
   @override
-  _BodyState createState() => _BodyState();
+  State<Body> createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
@@ -43,7 +43,7 @@ class _BodyState extends State<Body> {
 
   void _launchURL(String? url) async {
     if (url != null) {
-      if (!await launch(url)) throw 'Could not launch $url';
+      if (!await launchUrlString(url)) throw 'Could not launch $url';
     }
   }
 
@@ -220,8 +220,7 @@ class _BodyState extends State<Body> {
                       Text(articles[index].source ?? "",
                           style: const TextStyle(color: kSecondaryTextColor)),
                       Text(
-                        "  |  " +
-                            timeDifference(articles[index].publishedAt ?? ""),
+                        "  |  ${timeDifference(articles[index].publishedAt ?? "")}",
                       ),
                       SizedBox(height: getProportionateScreenHeight(10)),
                     ],
@@ -273,7 +272,7 @@ class _BodyState extends State<Body> {
                 Text(articles[index].source ?? "",
                     style: const TextStyle(color: kSecondaryTextColor)),
                 Text(
-                  "  |  " + timeDifference(articles[index].publishedAt ?? ""),
+                  "  |  ${timeDifference(articles[index].publishedAt ?? "")}",
                 ),
               ],
             ),
@@ -331,8 +330,7 @@ class _BodyState extends State<Body> {
                         Text(articles[index].source ?? "",
                             style: const TextStyle(color: kSecondaryTextColor)),
                         Text(
-                          "  |  " +
-                              timeDifference(articles[index].publishedAt ?? ""),
+                          "  |  ${timeDifference(articles[index].publishedAt ?? "")}",
                         ),
                       ],
                     ),

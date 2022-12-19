@@ -9,9 +9,9 @@ class ApiService {
       Uri.parse(
           'https://bing-news-search1.p.rapidapi.com/news?mkt=en-IN&safeSearch=Off&textFormat=Raw'),
       headers: {
-        "x-bingapis-sdk": "true",
-        "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
-        "x-rapidapi-key": apiKey,
+        'X-Bingapis-Sdk': 'true',
+        'X-Rapidapi-Host': 'bing-news-search1.p.rapidapi.com',
+        'X-Rapidapi-Key': apiKey,
       },
     );
     if (res.statusCode == 200) {

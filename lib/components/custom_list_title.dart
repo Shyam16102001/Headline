@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:headline/constants.dart';
 import 'package:headline/model/article_model.dart';
 import 'package:headline/size_config.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 Widget customListTitle(Article article, BuildContext context) {
-  void _launchURL(String? url) async {
+  void launchURL(String? url) async {
     if (url != null) {
-      if (!await launch(url)) throw 'Could not launch $url';
+      if (!await launchUrlString(url)) throw 'Could not launch $url';
     }
   }
 
   Widget imageProvider(String? url) {
     if (url == null || url == "") {
-      return Image.asset(
-          "assets/images/image_not_found.png",
+      return Image.asset("assets/images/image_not_found.png",
           height: double.infinity,
           width: getProportionateScreenWidth(65),
           fit: BoxFit.contain);
@@ -28,7 +27,7 @@ Widget customListTitle(Article article, BuildContext context) {
   }
 
   return InkWell(
-    onTap: () => _launchURL(article.url),
+    onTap: () => launchURL(article.url),
     child: Container(
       margin: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(1)),
       padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(1)),

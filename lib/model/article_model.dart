@@ -10,12 +10,12 @@ class Article {
   String? publishedAt;
 
   Article({
-    required this.source,
-    required this.name,
-    required this.description,
-    required this.url,
-    required this.image,
-    required this.publishedAt,
+    this.source,
+    this.name,
+    this.description,
+    this.url,
+    this.image,
+    this.publishedAt,
   });
 
   factory Article.fromJson(Map<String, dynamic> json) {
@@ -24,7 +24,9 @@ class Article {
       url: json['url'] as String?,
       description: json['description'] as String?,
       publishedAt: json['datePublished'] as String?,
-      image: ArticleImage.fromJson(json["image"]).thumbnail.contentUrl,
+      image: json['image'] != null
+          ? ArticleImage.fromJson(json['image']).thumbnail.contentUrl
+          : null,
       source:
           List<Source>.from(json["provider"].map((x) => Source.fromJson(x)))[0]
               .name,
