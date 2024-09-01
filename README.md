@@ -5,7 +5,7 @@
 Headline is a flutter application which uses [Google News Api](https://rapidapi.com/bonaipowered/api/google-news22) to fetch top news headlines in India and displays it.
 The main aim of the application is to provide a easy way for the people to know what is happening around the world.
 
-[Website Link](https://headline16102001.netlify.app/#/)
+[Website Link](https://headline16102001.netlify.app/)
 
 > The website may take some time when loading the website for the first time.
 

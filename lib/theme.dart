@@ -16,8 +16,8 @@ ThemeData theme() {
 
 TextTheme textTheme() {
   return const TextTheme(
-    displayMedium: TextStyle(color: kTextColor),
-    displaySmall: TextStyle(color: kTextColor),
+    bodyMedium: TextStyle(color: kTextColor),
+    bodySmall: TextStyle(color: kTextColor),
   );
 }
 

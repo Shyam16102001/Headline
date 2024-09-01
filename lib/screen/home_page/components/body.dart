@@ -9,7 +9,7 @@ import 'package:jiffy/jiffy.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class Body extends StatefulWidget {
-  const Body({Key? key}) : super(key: key);
+  const Body({super.key});
 
   @override
   State<Body> createState() => _BodyState();
@@ -193,9 +193,8 @@ class _BodyState extends State<Body> {
             borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(10.0),
                 bottomRight: Radius.circular(10.0)),
-            // ignore: prefer_const_literals_to_create_immutables
-            boxShadow: [
-              const BoxShadow(color: kPrimaryColor, blurRadius: 10.0),
+            boxShadow: const [
+              BoxShadow(color: kPrimaryColor, blurRadius: 10.0),
             ]),
         child: Column(
           children: [

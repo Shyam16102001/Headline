@@ -6,7 +6,7 @@ import 'package:headline/size_config.dart';
 import 'package:jiffy/jiffy.dart';
 
 class HomePageScreen extends StatefulWidget {
-  const HomePageScreen({Key? key}) : super(key: key);
+  const HomePageScreen({super.key});
 
   @override
   State<HomePageScreen> createState() => _HomePageScreenState();
@@ -52,7 +52,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 const SizedBox(width: 60)
               ],
             ),
-            SvgPicture.asset("assets/icons/shyam.svg", height: 50)
+            Image.asset("assets/icons/shyam.png", height: 50),
+            // SvgPicture.asset("assets/icons/shyam.svg", height: 50)
           ],
         ),
       ),
