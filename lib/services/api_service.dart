@@ -7,16 +7,16 @@ class ApiService {
   Future<List<Article>> getArticle() async {
     final res = await http.get(
       Uri.parse(
-          'https://bing-news-search1.p.rapidapi.com/news?mkt=en-IN&safeSearch=Off&textFormat=Raw'),
+          'https://google-news22.p.rapidapi.com/v1/top-headlines?country=in&language=en'),
       headers: {
-        'X-Bingapis-Sdk': 'true',
-        'X-Rapidapi-Host': 'bing-news-search1.p.rapidapi.com',
+        'Host': 'google-news22.p.rapidapi.com',
+        'X-Rapidapi-Host': 'google-news22.p.rapidapi.com',
         'X-Rapidapi-Key': apiKey,
       },
     );
     if (res.statusCode == 200) {
       Map<String, dynamic> json = jsonDecode(res.body);
-      List body = json["value"].cast<dynamic>();
+      List body = json["data"].cast<dynamic>();
       List<Article> articles =
           body.map((dynamic item) => Article.fromJson(item)).toList();
       return articles;

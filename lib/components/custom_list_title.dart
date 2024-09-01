@@ -18,7 +18,6 @@ Widget customListTitle(Article article, BuildContext context) {
           width: getProportionateScreenWidth(65),
           fit: BoxFit.contain);
     } else {
-      url = url.substring(0, url.lastIndexOf("&"));
       return Image.network(url,
           height: double.infinity,
           width: getProportionateScreenWidth(65),

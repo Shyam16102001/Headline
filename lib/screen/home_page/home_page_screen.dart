@@ -13,8 +13,8 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
-  String date = Jiffy().format("MMMM dd, yyyy");
-  String day = Jiffy().format("EEEE");
+  String date = Jiffy.now().format(pattern: "MMMM dd, yyyy");
+  String day = Jiffy.now().format(pattern: "EEEE");
 
   @override
   Widget build(BuildContext context) {

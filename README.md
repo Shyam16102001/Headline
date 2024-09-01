@@ -2,7 +2,7 @@
 
 **_All the news you need and more._**
 
-Headline is a flutter application which uses [Bing News Search API](https://www.microsoft.com/en-us/bing/apis/bing-news-search-api) to fetch top news headlines in India and displays it.
+Headline is a flutter application which uses [Google News Api](https://rapidapi.com/bonaipowered/api/google-news22) to fetch top news headlines in India and displays it.
 The main aim of the application is to provide a easy way for the people to know what is happening around the world.
 
 [Website Link](https://headline16102001.netlify.app/#/)
@@ -21,7 +21,7 @@ flutter doctor
 ```
 
 2. Having an RapidApi account. If not visit [RapidApi](https://rapidapi.com/) to create a account.
-3. Go to [Bing News Search](https://rapidapi.com/microsoft-azure-org-microsoft-cognitive-services/api/bing-news-search1/) and subscribe to the API.
+3. Go to [Google News](https://rapidapi.com/bonaipowered/api/google-news22) and subscribe to the API.
 
 ## Usage
 

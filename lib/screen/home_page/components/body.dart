@@ -66,7 +66,6 @@ class _BodyState extends State<Body> {
           width: double.maxFinite,
           fit: BoxFit.contain);
     } else {
-      url = url.substring(0, url.lastIndexOf("&"));
       return Image.network(url,
           height: getProportionateScreenHeight(size),
           width: double.maxFinite,
@@ -346,8 +345,8 @@ class _BodyState extends State<Body> {
   }
 
   String timeDifference(String time) {
-    String current = Jiffy().utc().toIso8601String();
-    String difference = Jiffy(time).from(current);
+    DateTime pastTime = DateTime.parse(time);
+    String difference = Jiffy.parseFromDateTime(pastTime).fromNow();
     return difference;
   }
 }
